@@ -1,0 +1,92 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.Container {
+  display: flex !important;
+  flex-direction: row;
+  width: 100%;
+  padding: 10px;
+}
+
+.Banner-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
+  margin-bottom: 50px;
+}
+
+.Banner-container h1 {
+  margin-right: 100px;
+}
+
+.profile {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.project-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.bg-body-tertiary {
+  display: flex;
+}
+
+.card {
+  width: 30rem !important;
+  height: 20rem;
+  padding: 20px;
+  margin: 20px;
+}
+
+.Info-container {  
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 100px 20px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "left image1"
+    "image2 right";
+  margin-top: 200px;
+  margin-bottom: 200px;
+}
+
+.left { grid-area: left; }
+
+.right { grid-area: right; }
+
+.image1 { grid-area: image1; }
+
+.image2 { grid-area: image2; }
+
+h1 {
+  font-weight: 400;
+}
+
+.Artist {
+  font-weight: 700;
+  font-size: larger;
+}
+
+.Name {
+  font-weight: 700;
+  font-size: larger;
+}
+
+.info-img {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 20px;
+}
