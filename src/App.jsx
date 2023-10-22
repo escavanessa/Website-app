@@ -8,15 +8,6 @@ import Wave from './Components/Wave'
 import Skills from './Components/Skills'
 
 
-
-
-
-
-
-
-
-
-
 function App() {
   return (
     <>
