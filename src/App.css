@@ -5,6 +5,15 @@
   text-align: center;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+.bg-bodyy-tertiar {
+  position: fixed;
+  top: 0;
+}
+
 .container {
   width: 1280px;
   display: flex;
@@ -20,7 +29,8 @@
   margin-top: 50px;
   margin-bottom: 50px;
   border-radius: 20px;
-  background: linear-gradient(#42275a, #734b6d);
+  border: solid white;
+  /*background: linear-gradient(#42275a, #734b6d);*/
 }
 
 .Banner-container h1 {
@@ -62,11 +72,11 @@
   grid-template-areas:
     "left image1"
     "image2 right";
-  margin-top: 200px;
+ /* margin-top: 200px; */
   margin-bottom: 200px;
   padding: 50px;
   border-radius: 20px;
-  background: linear-gradient( #734b6d, #928dab);
+  border: solid white;
 }
 
 .left { grid-area: left; }
@@ -95,7 +105,7 @@ h1 {
   width: 400px;
   height: 300px;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .nav-link {
@@ -110,12 +120,18 @@ h1 {
   border-radius: 20px;
 }
 
+.card:hover {
+  transform: scale(1.1);
+  transition: all .2s ease-in-out; 
+}
+
 .skills-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 200px;
   margin-bottom: 200px;
+  border: solid;
+  border-radius: 20px;
+  padding: 60px;
+  padding-top: 20px;
 }
 
 .skills-container img {
@@ -132,6 +148,11 @@ h1 {
   text-align: right;
 }
 
+p {
+  font-size: larger;
+}
+
+
 .form-container {  
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -142,8 +163,11 @@ h1 {
   grid-template-areas:
     "input text";
   height: 200px;
-  margin-top: 200px;
+  margin-top: 100px;
   margin-bottom: 50px;
+  border: solid;
+  border-radius: 20px;
+  padding: 60px;
 }
 
 .form-input { 

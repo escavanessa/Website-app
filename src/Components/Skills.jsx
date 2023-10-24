@@ -2,8 +2,8 @@ const Skills = () => {
     return(
 
         <>
+        <div id="skills" className="skills-container">
         <h1>skills</h1>
-        <div className="skills-container">
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" />
 
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" />

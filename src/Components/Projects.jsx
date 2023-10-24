@@ -35,7 +35,7 @@ const map = images.map((img) => {
 
 const Projects = () => {
     return(
-        <div className="project-container">
+        <div id="projects" className="project-container">
             {map}
         </div>
     )

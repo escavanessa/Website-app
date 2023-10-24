@@ -15,7 +15,7 @@ function App() {
     <BasicNav />
     <Banner />
     <Info />
-    <Skills />
+    <Skills  />
     <Projects />
     <Contact />
     <Footer />
