@@ -142,7 +142,8 @@ h1 {
   grid-template-areas:
     "input text";
   height: 200px;
-  margin-top: 60px;
+  margin-top: 200px;
+  margin-bottom: 50px;
 }
 
 .form-input { 
@@ -171,5 +172,24 @@ textarea {
 }
 
 .form-container .form-btn {
+  width: 100%;
+}
+
+.footer-container {
+  display: flex;
+  width: 100%;
+  justify-content: left;
+  /* margin-left: 100px; */
+  text-align: end;
+}
+
+.footer-container img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.footer-container .footer-h1 {
+  font-size: small;
   width: 100%;
 }
