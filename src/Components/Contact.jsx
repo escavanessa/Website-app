@@ -13,24 +13,48 @@ import { useState } from "react"
 //individual inputs onChange will be set to the handleChange function. it extracts the name and value
 //of the form field and then updates the input state variable using the setinput function
 
+const PasswordErrorMessage = () => { 
+    return ( 
+      <p className="FieldError">Password should have at least 8 characters</p> 
+    ); 
+   }; 
+    
+
+
+
+
 const Contact = () => {
-    const [input, setInput] = useState({name:'', email:'', message:''});
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("")
+    const [message, setMessage] = useState("")
+    const [password, setPassword] = UseState({  value: "", 
+    isTouched: false, });
 
 
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setInput((prevInput) => ({...prevInput, [name]: value}));
-    }
 
     const clearForm = () => {
-        setInput("");
+        setName("");
+        setEmail("");
+        setMessage("");
+        setPassword({
+            value: "",
+            isTouched: false,
+        });
     }
 
     
     const handleSubmit = (e) => {
         e.preventDefault();
+        clearForm();
     }
+
+    const getIsFormValid = () => { 
+        return ( 
+          firstName && 
+          validateEmail(email) && 
+          password.value.length >= 8
+        ); 
+       }; 
 
 
     return(
@@ -42,9 +66,11 @@ const Contact = () => {
                         type='text'
                         id="name"
                         name="name"
-                        value={input.name}
-                        onChange={handleChange}
+                        value={name}
                         placeholder="Name"
+                        onChange={(e) => {
+                            setName(e.target.value)
+                        }}
                         />
                     </label>
                     <label>
@@ -52,9 +78,29 @@ const Contact = () => {
                         type=""
                         id="email"
                         name="email"
-                        value={input.email}
-                        onChange={handleChange}
+                        value={email}
                         placeholder="email"
+                        onChange={(e) => {
+                            setEmail(e.target.value)
+                        }}
+                        />
+                    </label>
+                    <label>
+                        <input 
+                        type=""
+                        id="password"
+                        name="password"
+                        value={password.value}
+                        placeholder="password"
+                        onChange={(e) => {
+                            setPassword({...password, value: e.target.value})
+                        }}
+                        onBlur={() => { 
+                            setPassword({ ...password, isTouched: true }); 
+                          }} 
+                        {...password.isTouched && password.value.length < 8 ? ( 
+                        <PasswordErrorMessage /> 
+                        ) : null} 
                         />
                     </label>
                 </div>
@@ -63,8 +109,10 @@ const Contact = () => {
                         <textarea 
                         id="message"
                         name="message"
-                        value={input.message}
-                        onChange={handleChange}
+                        value={message}
+                        onChange={(e) => {
+                            setMessage(e.target.value)
+                        }}
                         />
                     </label>
 
