@@ -18,6 +18,7 @@ html {
   width: 1280px;
   display: flex;
   justify-content: space-between;
+  margin-top: 10px;
 }
 
 .Banner-container {
@@ -172,6 +173,7 @@ p {
 
 .form-input { 
   grid-area: input; 
+  margin-top: -50px;
 }
 
 .form-text { 

@@ -27,7 +27,7 @@ const Contact = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("")
     const [message, setMessage] = useState("")
-    const [password, setPassword] = UseState({  value: "", 
+    const [password, setPassword] = useState({  value: "", 
     isTouched: false, });
 
 
@@ -50,7 +50,7 @@ const Contact = () => {
 
     const getIsFormValid = () => { 
         return ( 
-          firstName && 
+          name && 
           validateEmail(email) && 
           password.value.length >= 8
         ); 
@@ -110,13 +110,14 @@ const Contact = () => {
                         id="message"
                         name="message"
                         value={message}
+                        placeholder="message"
                         onChange={(e) => {
                             setMessage(e.target.value)
                         }}
                         />
                     </label>
 
-                    <button className="form-btn" onClick={() => clearForm}  type="submit">Submit</button>
+                    <button className="form-btn" disabled={!getIsFormValid()} type="submit">Submit</button>
                 </div>
             </form>
     )
