@@ -20,6 +20,14 @@ const PasswordErrorMessage = () => {
    }; 
     
 
+   function validateEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    console.log(email)
+    return re.test(email);
+
+  }
+      
+
 
 
 
@@ -75,7 +83,7 @@ const Contact = () => {
                     </label>
                     <label>
                         <input 
-                        type=""
+                        type="email"
                         id="email"
                         name="email"
                         value={email}
@@ -87,7 +95,7 @@ const Contact = () => {
                     </label>
                     <label>
                         <input 
-                        type=""
+                        type="password"
                         id="password"
                         name="password"
                         value={password.value}
