@@ -180,10 +180,26 @@ p {
   grid-area: text;
 }
 
+label {
+  display: block;
+  min-height: 70px;
+}
+
 input {
   height: 30px;
   width: 60%;
-  margin-bottom: 30px;
+}
+
+.FieldError {
+  color: red;
+  font-size: 12px;
+  text-align: left;
+  width: 60%; /*  same width as input */
+  margin: 0 auto;
+}
+
+.invalid-field {
+  border: 1px solid red;
 }
 
 textarea {
