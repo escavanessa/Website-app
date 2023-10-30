@@ -15,10 +15,10 @@ import { useState } from "react"
 
 // made this reusable
 const FormFieldErrorMessage = (props) => {
-    return ( 
-      <div className="FieldError">{props.msg}</div>
+    return (
+        <div className="FieldError">{props.msg}</div>
     );
-   };
+};
 
 
 
@@ -55,13 +55,13 @@ const Contact = () => {
         clearForm();
     }
 
-    const getIsFormValid = () => { 
-        return ( 
-          validateName() &&
-          validateEmail() &&
-          validatePassword()
-        ); 
-       };
+    const getIsFormValid = () => {
+        return (
+            validateName() &&
+            validateEmail() &&
+            validatePassword()
+        );
+    };
 
     // actually if we move it in here we can just use the state data since its in scope
     // email should match regex
@@ -81,12 +81,12 @@ const Contact = () => {
     }
 
 
-    return(
-            <form className="form-container" onSubmit={handleSubmit}>
-                <div id="contact" className="form-input">
-                    <h2>Contact Me!</h2>
-                    <label>
-                        <input 
+    return (
+        <form className="form-container" onSubmit={handleSubmit}>
+            <div id="contact" className="form-input">
+                <h2>Contact Me!</h2>
+                <label>
+                    <input
                         type='text'
                         id="name"
                         name="name"
@@ -95,16 +95,16 @@ const Contact = () => {
                         value={name.value}
                         placeholder="Name"
                         onChange={(e) => {
-                            setName({...name, value: e.target.value})
+                            setName({ ...name, value: e.target.value })
                         }}
                         onBlur={() => {
                             setName({ ...name, isTouched: true });
                         }}
-                        />
-                        {name.isTouched && !validateName() ? (<FormFieldErrorMessage msg={"please enter a name"} /> ) : ''}
-                    </label>
-                    <label>
-                        <input 
+                    />
+                    {name.isTouched && !validateName() ? (<FormFieldErrorMessage msg={"please enter a name"} />) : ''}
+                </label>
+                <label>
+                    <input
                         type="email"
                         id="email"
                         name="email"
@@ -117,7 +117,7 @@ const Contact = () => {
                                 Its similar to doing this and it combines all three
                                 setEmail(Object.assign({}, email, {value: e.target.value}))
                             */
-                            setEmail({ ...email, value: e.target.value})
+                            setEmail({ ...email, value: e.target.value })
                         }}
                         onBlur={() => {
                             /*
@@ -133,16 +133,16 @@ const Contact = () => {
                             */
                             setEmail({ ...email, isTouched: true });
                         }}
-                        />
-                        {/*
+                    />
+                    {/*
                             we can make a conditional variable for the error message.
                             If the field has been touched, and the email isn't valid
                             then show the message, or show nothing if we are good.
                         */}
-                        {email.isTouched && !validateEmail() ? (<FormFieldErrorMessage msg={"bruh, wrong email"} /> ) : ''}
-                    </label>
-                    <label>
-                        <input 
+                    {email.isTouched && !validateEmail() ? (<FormFieldErrorMessage msg={"bruh, wrong email"} />) : ''}
+                </label>
+                <label>
+                    <input
                         type="password"
                         id="password"
                         name="password"
@@ -150,19 +150,19 @@ const Contact = () => {
                         value={password.value}
                         placeholder="password"
                         onChange={(e) => {
-                            setPassword({...password, value: e.target.value})
+                            setPassword({ ...password, value: e.target.value })
                         }}
-                        onBlur={() => { 
-                            setPassword({ ...password, isTouched: true }); 
-                          }} 
-                        />
-                        {/* moved this outside of the brackets and removd the spread operator */}
-                        {password.isTouched && !validatePassword() ? ( <FormFieldErrorMessage msg={"Password should have at least 8 characters"} /> ) : ''}
-                    </label>
-                </div>
-                <div className="form-text">
-                    <label>
-                        <textarea 
+                        onBlur={() => {
+                            setPassword({ ...password, isTouched: true });
+                        }}
+                    />
+                    {/* moved this outside of the brackets and removd the spread operator */}
+                    {password.isTouched && !validatePassword() ? (<FormFieldErrorMessage msg={"Password should have at least 8 characters"} />) : ''}
+                </label>
+            </div>
+            <div className="form-text">
+                <label>
+                    <textarea
                         id="message"
                         name="message"
                         value={message}
@@ -170,12 +170,12 @@ const Contact = () => {
                         onChange={(e) => {
                             setMessage(e.target.value)
                         }}
-                        />
-                    </label>
+                    />
+                </label>
 
-                    <button className="form-btn" disabled={!getIsFormValid()} type="submit">Submit</button>
-                </div>
-            </form>
+                <button className="form-btn" disabled={!getIsFormValid()} type="submit">Submit</button>
+            </div>
+        </form>
     )
 }
 
