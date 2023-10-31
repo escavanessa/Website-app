@@ -13,36 +13,35 @@ import { useState } from "react"
 //individual inputs onChange will be set to the handleChange function. it extracts the name and value
 //of the form field and then updates the input state variable using the setinput function
 
-const PasswordErrorMessage = () => { 
+// made this reusable
+const FormFieldErrorMessage = (props) => {
     return ( 
-      <p className="FieldError">Password should have at least 8 characters</p> 
-    ); 
-   }; 
-    
+      <div className="FieldError">{props.msg}</div>
+    );
+   };
 
-   function validateEmail(email) {
-    var re = /\S+@\S+\.\S+/;
-    console.log(email)
-    return re.test(email);
-
-  }
-      
 
 
 
 
 const Contact = () => {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("")
+    // change all data to object so we can keep track of if its touched
+    // the same way password was before
+    const [name, setName] = useState({ value: "", isTouched: false, });
+    const [email, setEmail] = useState({ value: "", isTouched: false, })
     const [message, setMessage] = useState("")
-    const [password, setPassword] = useState({  value: "", 
-    isTouched: false, });
+    const [password, setPassword] = useState({ value: "", isTouched: false, });
 
-
-
+    // update to set each back to original data values
     const clearForm = () => {
-        setName("");
-        setEmail("");
+        setName({
+            value: "",
+            isTouched: false,
+        });
+        setEmail({
+            value: "",
+            isTouched: false,
+        });
         setMessage("");
         setPassword({
             value: "",
@@ -50,7 +49,7 @@ const Contact = () => {
         });
     }
 
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
         clearForm();
@@ -58,11 +57,28 @@ const Contact = () => {
 
     const getIsFormValid = () => { 
         return ( 
-          name && 
-          validateEmail(email) && 
-          password.value.length >= 8
+          validateName() &&
+          validateEmail() &&
+          validatePassword()
         ); 
-       }; 
+       };
+
+    // actually if we move it in here we can just use the state data since its in scope
+    // email should match regex
+    function validateEmail() {
+        let re = /\S+@\S+\.\S+/g;
+        return re.test(email.value);
+    }
+
+    // password should have 8 or more
+    function validatePassword() {
+        return password.value.length > 7;
+    }
+
+    // name should at least exist lol
+    function validateName() {
+        return !!name.value;
+    }
 
 
     return(
@@ -74,30 +90,63 @@ const Contact = () => {
                         type='text'
                         id="name"
                         name="name"
-                        value={name}
+                        // we can use the same validation logic to conditionally add a class when the field is invalid
+                        className={name.isTouched && !validateName() ? 'invalid-field' : ''}
+                        value={name.value}
                         placeholder="Name"
                         onChange={(e) => {
-                            setName(e.target.value)
+                            setName({...name, value: e.target.value})
+                        }}
+                        onBlur={() => {
+                            setName({ ...name, isTouched: true });
                         }}
                         />
+                        {name.isTouched && !validateName() ? (<FormFieldErrorMessage msg={"please enter a name"} /> ) : ''}
                     </label>
                     <label>
                         <input 
                         type="email"
                         id="email"
                         name="email"
-                        value={email}
+                        className={email.isTouched && !validateEmail() ? 'invalid-field' : ''}
+                        value={email.value}
                         placeholder="email"
                         onChange={(e) => {
-                            setEmail(e.target.value)
+                            /*  the spread operator here will combine the whole object
+                                with what ever has changed here
+                                Its similar to doing this and it combines all three
+                                setEmail(Object.assign({}, email, {value: e.target.value}))
+                            */
+                            setEmail({ ...email, value: e.target.value})
+                        }}
+                        onBlur={() => {
+                            /*
+                                onBlur is called when the user's focus leaves the field
+
+                                So we can set isTouched to true in order to keep track that the
+                                user has clicked the field
+
+                                The reason is that we don't want to show the error right away,
+                                or when the user is typing, but if the user types something and
+                                then leaves the field then we should tell them they messed up
+                                and they better fix it. So we can keep track of this with isTouched
+                            */
+                            setEmail({ ...email, isTouched: true });
                         }}
                         />
+                        {/*
+                            we can make a conditional variable for the error message.
+                            If the field has been touched, and the email isn't valid
+                            then show the message, or show nothing if we are good.
+                        */}
+                        {email.isTouched && !validateEmail() ? (<FormFieldErrorMessage msg={"bruh, wrong email"} /> ) : ''}
                     </label>
                     <label>
                         <input 
                         type="password"
                         id="password"
                         name="password"
+                        className={password.isTouched && !validateName() ? 'invalid-field' : ''}
                         value={password.value}
                         placeholder="password"
                         onChange={(e) => {
@@ -106,10 +155,9 @@ const Contact = () => {
                         onBlur={() => { 
                             setPassword({ ...password, isTouched: true }); 
                           }} 
-                        {...password.isTouched && password.value.length < 8 ? ( 
-                        <PasswordErrorMessage /> 
-                        ) : null} 
                         />
+                        {/* moved this outside of the brackets and removd the spread operator */}
+                        {password.isTouched && !validatePassword() ? ( <FormFieldErrorMessage msg={"Password should have at least 8 characters"} /> ) : ''}
                     </label>
                 </div>
                 <div className="form-text">
