@@ -12,13 +12,21 @@ html {
 .bg-bodyy-tertiar {
   position: fixed;
   top: 0;
+  background-color: white;
 }
 
 .container {
   width: 1280px;
   display: flex;
-  justify-content: space-between;
   margin-top: 10px;
+  padding: 10px;
+  align-items: center;
+}
+
+.nav-img {
+  width: 30px;
+  height: 30px;
+  margin: 10px;
 }
 
 .Banner-container {

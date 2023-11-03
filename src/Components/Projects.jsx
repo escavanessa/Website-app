@@ -4,27 +4,27 @@ import ProjectCard from "./Card"
 const images = [
     {
         imgUrl:'blue.png',
-        title: 'Lorem Ipsum'
+        title: 'Paintings I made throughout my life! Portion coming soon.'
     },
     {
         imgUrl:'house.png',
-        title: 'Lorem Ipsum'
+        title: '3D work i began making in college. Portion coming soon'
     },
     {
         imgUrl:'todo.png',
-        title: 'Lorem Ipsum'
+        title: 'Javascript Project I made'
     },
     {
         imgUrl:'weather.png',
-        title: 'Lorem Ipsum'
+        title: 'Jacascript project I made'
     },
     {
         imgUrl:'peirce.png',
-        title: 'Lorem Ipsum'
+        title: 'A painting I made in college since i ran out of images'
     },
     {
         imgUrl:'purple.png',
-        title: 'Lorem Ipsum'
+        title: 'A painting I made in college since i ran out of images'
     },
   ]
 
@@ -37,9 +37,12 @@ const map = images.map((img, imagesArrayIndex) => {
 
 const Projects = () => {
     return(
+        <>
+        <h1>Featured Projects!</h1>
         <div id="projects" className="project-container">
             {map}
         </div>
+        </>
     )
 }
 
